@@ -1,0 +1,33 @@
+openapi: 3.0.0
+paths:
+  /app:
+    get:
+      operationId: AppController_getHello
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCatDto'
+      tags:
+        - app
+info:
+  title: Cats example
+  description: The cats API description
+  version: '1.0'
+  contact: {}
+tags:
+  - name: cats
+    description: ''
+servers: []
+components:
+  schemas:
+    CreateCatDto:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
