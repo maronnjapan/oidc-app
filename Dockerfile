@@ -1,4 +1,22 @@
-FROM node:18.17.0-alpine
+FROM ubuntu:latest
+
+RUN apt-get update -y \
+    && apt-get upgrade -y \
+    && apt-get autoremove -y \
+    && apt-get install -y software-properties-common \
+    && add-apt-repository ppa:git-core/ppa \
+    && apt-get update -y
+
+RUN apt-get install -y git \
+    && apt install -y curl
+
+RUN apt install -y nodejs npm\
+    && npm install n -g \
+    && n stable \
+    && apt purge -y nodejs npm \
+    && apt autoremove -y
+
+
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
